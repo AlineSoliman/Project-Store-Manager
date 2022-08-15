@@ -1,6 +1,10 @@
 const app = require('./app');
 require('dotenv').config();
 
+const routes = require('./routes');
+
+app.use('/product', routes.productsRoute);
+
 // não altere esse arquivo, essa estrutura é necessária para à avaliação do projeto  
 
 app.listen(process.env.PORT, () => {
