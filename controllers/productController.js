@@ -11,4 +11,10 @@ const getId = async (req, res) => {
   res.status(200).json(result);
 };
 
-module.exports = { getAll, getId };
+const saveProduct = async (req, res) => {
+  const { name } = req.body;
+  const saved = await productsService.saveServiceProduct(name);
+  return res.status(201).json(saved);
+};
+
+module.exports = { getAll, getId, saveProduct };
