@@ -7,7 +7,13 @@ const getAll = async () => {
 
 const getId = async (id) => {
   const [[result]] = await connection
-    .execute('SELECT * FROM StoreManager.products WHERE id = ?', [id]);
+    .execute('SELECT * FROM StoreManager.products WHERE id = ?;', [id]);
   return result;
 };
-module.exports = { getAll, getId };
+
+const saveModelProduct = async (name) => {
+  const query = 'INSERT INTO StoreManager.products (name) VALUES (?);';
+  const [products] = await connection.execute(query, [name]);
+  return { id: products.insertId, name };
+};
+module.exports = { getAll, getId, saveModelProduct };
