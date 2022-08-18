@@ -16,4 +16,18 @@ const saveModelProduct = async (name) => {
   const [products] = await connection.execute(query, [name]);
   return { id: products.insertId, name };
 };
-module.exports = { getAll, getId, saveModelProduct };
+
+const salesTable = async () => {
+   const query = 'INSERT INTO StoreManager.sales (date) VALUES (NOW());';
+   const [sales] = await connection.execute(query);
+  return sales;
+};
+
+const salesProducts = async (saleId, productId, quantity) => {
+  const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) 
+   VALUES (?, ?, ?)`;
+   const [soldProducts] = await connection.execute(query, [saleId, productId, quantity]);
+  return soldProducts;
+};
+
+module.exports = { getAll, getId, saveModelProduct, salesTable, salesProducts };
