@@ -17,4 +17,11 @@ const saveProduct = async (req, res) => {
   return res.status(201).json(saved);
 };
 
-module.exports = { getAll, getId, saveProduct };
+const salesProducts = async (req, res) => {
+  const sold = req.body;
+  const savedSale = await productsService.salesProducts(sold);
+  // console.log(sold);
+  return res.status(201).json(savedSale);
+};
+
+module.exports = { getAll, getId, saveProduct, salesProducts };
