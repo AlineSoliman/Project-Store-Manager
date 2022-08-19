@@ -33,4 +33,13 @@ const salesProducts = async (sold) => {
   };
 };
 
-module.exports = { getAll, getId, saveServiceProduct, salesProducts };
+const getAllSales = async () => productsModel.getAllSales();
+
+const getSalesId = async (saleId) => {
+  const product = await productsModel.getSalesId(saleId);
+  if (!product || product.length === 0) throw new CustomError(404, 'not found', 'Sale not found');
+  console.log(product);
+  return product;
+};
+
+module.exports = { getAll, getId, saveServiceProduct, salesProducts, getAllSales, getSalesId };
