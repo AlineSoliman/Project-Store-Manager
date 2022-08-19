@@ -24,4 +24,15 @@ const salesProducts = async (req, res) => {
   return res.status(201).json(savedSale);
 };
 
-module.exports = { getAll, getId, saveProduct, salesProducts };
+const getAllSales = async (req, res) => {
+  const result = await productsService.getAllSales();
+  return res.status(200).json(result);
+};
+
+const getSalesId = async (req, res) => {
+  const { id } = req.params;
+  const result = await productsService.getSalesId(id);
+  res.status(200).json(result);
+};
+
+module.exports = { getAll, getId, saveProduct, salesProducts, getAllSales, getSalesId };
