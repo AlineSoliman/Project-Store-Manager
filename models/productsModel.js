@@ -31,11 +31,10 @@ const salesProducts = async (saleId, productId, quantity) => {
 };
 
 const getAllSales = async () => {
-  const [result] = await connection.execute(`SELECT sp.sale_id AS saleId, 
-  s.date, sp.product_id AS productId, sp.quantity  
-  FROM StoreManager.sales AS s
-  INNER JOIN StoreManager.sales_products AS sp ON s.id = sp.product_id`);
-  console.log(result);
+  const [result] = await connection.execute(`SELECT sale_id AS saleId, 
+  sp.date, product_id AS productId, quantity  
+  FROM StoreManager.sales_products AS s
+  INNER JOIN StoreManager.sales AS sp ON sp.id = s.sale_id`);
   return result;
 };
 

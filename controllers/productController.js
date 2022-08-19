@@ -24,7 +24,7 @@ const salesProducts = async (req, res) => {
   return res.status(201).json(savedSale);
 };
 
-const getAllSales = async (req, res) => {
+const getAllSales = async (_req, res) => {
   const result = await productsService.getAllSales();
   return res.status(200).json(result);
 };

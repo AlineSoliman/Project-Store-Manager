@@ -33,7 +33,10 @@ const salesProducts = async (sold) => {
   };
 };
 
-const getAllSales = async () => productsModel.getAllSales();
+const getAllSales = async () => {
+  const allSales = await productsModel.getAllSales();
+  return allSales;
+};
 
 const getSalesId = async (saleId) => {
   const product = await productsModel.getSalesId(saleId);
