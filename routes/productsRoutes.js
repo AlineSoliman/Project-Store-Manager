@@ -9,5 +9,6 @@ const productValidate = require('../middlewares/validateProduct');
 productsRoute.get('/', productsController.getAll);
 productsRoute.get('/:id', productsController.getId);
 productsRoute.post('/', productValidate.productMiddleware, productsController.saveProduct);
+productsRoute.delete('/:id', productsController.deleteProductById);
 
 module.exports = productsRoute;
