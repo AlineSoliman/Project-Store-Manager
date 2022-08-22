@@ -45,4 +45,11 @@ const getSalesId = async (saleId) => {
   return product;
 };
 
-module.exports = { getAll, getId, saveServiceProduct, salesProducts, getAllSales, getSalesId };
+module.exports = {
+  getAll,
+  getId,
+  saveServiceProduct,
+  salesProducts,
+  getAllSales,
+  getSalesId,
+  };
