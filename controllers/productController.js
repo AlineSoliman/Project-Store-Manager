@@ -6,9 +6,18 @@ const getAll = async (req, res) => {
 };
 
 const getId = async (req, res) => {
-  const { id } = req.params;
-  const result = await productsService.getId(id);
-  res.status(200).json(result);
+  try {
+    const { id } = req.params;
+    const product = await getId(id);
+    const result = await productsService.getId(id);
+    if (!product) {
+      res.status(404).json({ message: 'Product not found' });
+    } else {
+      res.status(200).json(result);
+    }
+    } catch (error) {
+    res.status(404).json({ message: 'Product not found' });
+  }
 };
 
 const saveProduct = async (req, res) => {
