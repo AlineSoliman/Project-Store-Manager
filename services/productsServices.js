@@ -9,6 +9,9 @@ const saveServiceProduct = async (product) => {
 };
 const getId = async (id) => {
   const product = await productsModel.getId(id);
+  // if (!product) throw new CustomError(404, 'not found', 'Product not found'); 1
+  // if (!product) throw new Error();2 try catch
+
   if (!product) throw new CustomError(404, 'not found', 'Product not found');
   return product;
 };
@@ -45,6 +48,12 @@ const getSalesId = async (saleId) => {
   return product;
 };
 
+const deleteProductById = async (id) => {
+  const product = await productsModel.getId(id);
+  if (!product) throw new CustomError(404, 'not found', 'Product not found');
+  await productsModel.deleteProductById(id);
+};
+
 module.exports = {
   getAll,
   getId,
@@ -52,4 +61,5 @@ module.exports = {
   salesProducts,
   getAllSales,
   getSalesId,
+  deleteProductById,
   };

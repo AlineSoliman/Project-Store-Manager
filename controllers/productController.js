@@ -5,18 +5,21 @@ const getAll = async (req, res) => {
   return res.status(200).json(result);
 };
 
-const getId = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const product = await productsService.getId(id);
-    if (!product) {
-      res.status(404).json({ message: 'Product not found' });
-    } else {
-      res.status(200).json(product);
-    }
-    } catch (error) {
-    res.status(404).json({ message: 'Product not found' });
-  }
+const getId = async (req, res, _next) => {
+  const { id } = req.params;
+  // try {
+  // const product = await productsService.getId(id);
+  // res.status(200).json(product);
+  // } catch (error) {
+  //   res.status(404).json({ message: 'Product not found' });
+  // }
+
+  // const product = await productsService.getId(id);
+  // const error = { code: 'notFound', message: 'Product not found', status: 404 };
+  // if (!product) next(error);
+  // return res.status(200).json(product);
+  const product = await productsService.getId(id);
+  return res.status(200).json(product);
 };
 
 const saveProduct = async (req, res) => {
@@ -45,8 +48,8 @@ const getSalesId = async (req, res) => {
 
 const deleteProductById = async (req, res) => {
   const { id } = req.params;
-  const result = await productsService.getId(id);
-  res.status(204).json(result);
+  await productsService.deleteProductById(id);
+  return res.status(204).json({ message: 'Produto deletado' });
 };
 
 module.exports = {
