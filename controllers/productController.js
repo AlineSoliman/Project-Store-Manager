@@ -7,17 +7,6 @@ const getAll = async (req, res) => {
 
 const getId = async (req, res, _next) => {
   const { id } = req.params;
-  // try {
-  // const product = await productsService.getId(id);
-  // res.status(200).json(product);
-  // } catch (error) {
-  //   res.status(404).json({ message: 'Product not found' });
-  // }
-
-  // const product = await productsService.getId(id);
-  // const error = { code: 'notFound', message: 'Product not found', status: 404 };
-  // if (!product) next(error);
-  // return res.status(200).json(product);
   const product = await productsService.getId(id);
   return res.status(200).json(product);
 };
